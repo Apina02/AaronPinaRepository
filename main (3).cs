@@ -1,0 +1,86 @@
+using System;
+
+class Program {
+  static void Main()
+  {
+    // Sales totals for each salesperson 
+    double totalDanielle = 0;
+    double totalEdward = 0;
+    double totalFrancis = 0;
+    double grandTotal = 0;
+
+    while (true)
+    {
+      Console.WriteLine("Enter salesperson initial (D, E, F) or Z to finish: ");
+      string input = Console.ReadLine().Trim();
+
+      // Check if user wants to finish
+      if (input.Equals( "Z", StringComparison.OrdinalIgnoreCase))
+      break;
+
+      // Determine the salesperson and get the sale amount 
+      char initial;
+      if (input.Length == 1 && char.TryParse(input, out initial))
+      {
+        Console.Write("Enter the amount of the sale:");
+        if (double.TryParse(Console.ReadLine(), out double saleAmount) && saleAmount >= 0)
+        {
+          // Update the totals based on the initial
+          switch (char.ToUpper(initial)) 
+           
+          {
+            case 'D':
+              totalDanielle += saleAmount;
+              break;
+            case 'E':
+              totalEdward += saleAmount;
+              break;
+            case 'F':
+              totalFrancis += saleAmount;
+              break;
+            default:
+            Console.WriteLine("Error: Invalid initial entered. Please enter D, E, or F. ");
+            continue;
+            }
+          // Update grand total
+          grandTotal += saleAmount;
+          }
+        else
+        {
+          Console.WriteLine("Error: Invalid sale amount entered." );
+          }
+        }
+      else 
+      {
+        Console.WriteLine("Error: Invalid initial entered. Please enter D, E, or F. ");
+        }
+      }
+
+    // Display totals 
+    Console.WriteLine("\nSales Totals: ");
+    Console.WriteLine($"Danielle: $ {totalDanielle:F2}");
+    Console.WriteLine( $"Edward: $ {totalEdward:F2}");
+    Console.WriteLine( $"Francis: $ {totalFrancis:F2}");
+    Console.WriteLine( $"Grand Total: $ {grandTotal:F2}");
+
+    // Determine who has the highest total
+    string highestSalesperson = "None";
+    double highestTotal = Math.Max(totalDanielle, Math.Max(totalEdward, totalFrancis));
+
+    if (highestTotal == totalDanielle)
+    highestSalesperson = "Danielle";
+    else if (highestTotal == totalEdward)
+    highestSalesperson = "Edward";
+    else if (highestTotal == totalFrancis)
+    highestSalesperson = "Francis";
+
+    Console.WriteLine($"Salesperson with the highest total: {highestSalesperson}");
+
+
+      }
+  
+        }
+
+         
+
+  
