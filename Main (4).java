@@ -1,0 +1,19 @@
+
+
+public class Main {
+  public static void main(String[] args) {
+    // Print the header of the table
+    System.out.printf("%-15s %-15s%n", "Miles", "Kilometers");
+    System.out.println("------------------------------");
+
+    // Loop through miles from 1 to 10
+    for (int miles = 1; miles <= 10; miles++) {
+      // Calculate kilometers
+      double kilometers = miles * 1.609;
+      // Print the miles and kilometers
+      System.out.printf("%-15d %-15.3f%n", miles, kilometers); 
+    }
+  }
+
+  
+}
