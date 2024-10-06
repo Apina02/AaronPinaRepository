@@ -1,0 +1,74 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program {
+  public static void Main(string[] args) 
+  {
+    List<double> temperatures = new List<double>();
+    const int numberOfTemperatures = 5;
+    bool gettingWarmer = true;
+    bool gettingColder = true;
+
+    for (int i = 0; i < numberOfTemperatures; i++)
+    {
+      double temperature;
+
+      while (true)
+      {
+        Console.Write($"Input Temperature {i + 1}: ");
+        string input = Console.ReadLine();
+
+        if (double.TryParse(input, out temperature) && temperature >= -30 && temperature <= 130)
+        {
+          temperatures.Add(temperature);
+          break;
+
+          }
+        else
+        {
+          Console.WriteLine($"Temperature {temperature} is invalid, Please enter a valid temperature between -30 and 130");
+          }
+        }
+
+      // Determine if the current temperature is less than the last one
+      if (i > 0)
+      {
+        if (temperature < temperatures[i - 1])
+        {
+          gettingWarmer = false;
+          }
+        else if (temperature > temperatures[i - 1])
+        {
+          gettingColder = false;
+        }
+        }
+      }
+    // Output results
+    if (gettingWarmer && !gettingColder)
+    {
+      Console.WriteLine("Getting Warmer");
+      }
+    else if (gettingColder && !gettingWarmer)
+    {
+      Console.WriteLine("Getting Cooler");
+      }
+    else
+    {
+      Console.WriteLine("It's a mixed bag");
+      }
+
+    Console.WriteLine($"5-day Temperature [{string.Join(",", temperatures)}]");
+    Console.WriteLine($"Average Temperature is {temperatures.Average():F1} degrees");
+  
+    }
+  
+    }
+    
+    
+        
+        
+      
+    
+    
+  
